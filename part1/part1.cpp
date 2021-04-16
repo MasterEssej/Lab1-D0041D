@@ -2,26 +2,16 @@
 #include <string>
 #include <vector>
 #include <cstring>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 #include "part1.h"
 
-void main()
+int main()
 {
 	List test;
 
-	/*
-	test.addNode("prog");
-	test.addNode("math");
-	test.addNode("data");
-
-	test.addStudent("palle", "prog");
-	test.addStudent("polle", "prog");
-	test.addStudent("karl", "math");
-	test.addStudent("olle", "tech");
-
-	test.Print();
-	*/
 	while (true)
 	{
 		int choice;
@@ -33,6 +23,7 @@ void main()
 		
 		if (choice == 1)
 		{
+			high_resolution_clock::duration totalTime(0);
 			cout << "Course application" << endl;
 			string name;
 			string course;
@@ -40,10 +31,16 @@ void main()
 			cin >> name;
 			cout << "Course: ";
 			cin >> course;
+			auto start = high_resolution_clock::now();
 			test.addStudent(name, course);
+			auto end = high_resolution_clock::now();
+			totalTime = totalTime + (end - start);
+			auto time = totalTime.count();
+			cout << endl << "Time: " << time << endl;
 		}
 		else if (choice == 2)
 		{
+			high_resolution_clock::duration totalTime(0);
 			cout << "Remove student" << endl;
 			string name;
 			string course;
@@ -51,7 +48,12 @@ void main()
 			cin >> name;
 			cout << "Course: ";
 			cin >> course;
+			auto start = high_resolution_clock::now();
 			test.delStudent(name, course);
+			auto end = high_resolution_clock::now();
+			totalTime = totalTime + (end - start);
+			auto time = totalTime.count();
+			cout << endl << "Time: " << time << endl;
 		}
 		else if (choice == 3)
 		{
@@ -62,5 +64,5 @@ void main()
 		system("cls");
 	}
 	
-	return;
+	return 0;
 }

@@ -59,18 +59,32 @@ public:
 
 	}
 
-	void addStudent(string name)
+	void addName(string name)
 	{
 		sName.push_back(name);
 	}
 
-	void delStudent(string name)
+	void delName(string name)
 	{
-		vector<string> temp;
 		int size = sName.size();
 		for (int i = 0; i < size; i++)
 		{
+			if (sName[0] == name)
+			{
+				sName.erase(sName.begin());
+				break;
+			}
+			sName.push_back(sName[0]);
+			sName.erase(sName.begin());
+		}
+	}
 
+	void Print()
+	{
+		int size = sName.size();
+		for (int i = 0; i < size; i++)
+		{
+			cout << sName[i] << ", ";
 		}
 	}
 };
